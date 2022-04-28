@@ -1,21 +1,42 @@
 {
-  "name": "my-app",
+  "name": "stackathon-tinder-clone",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "expo start --dev-client",
+    "seed": "node script/seed.js",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web"
   },
+  "prettier": {
+    "singleQuote": false,
+    "bracketSpacing": true,
+    "semi": false
+  },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
     "expo": "~44.0.2",
     "expo-splash-screen": "~0.14.1",
     "expo-status-bar": "~1.2.0",
+    "express": "^4.18.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.3",
+    "prettier": "^2.6.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
-    "react-native-web": "0.17.1"
+    "react-native-web": "0.17.1",
+    "react-redux": "^8.0.1",
+    "react-router-dom": "^6.3.0",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.5.4",
+    "sequelize": "^6.19.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
