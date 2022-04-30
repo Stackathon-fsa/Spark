@@ -5,12 +5,15 @@ import { composeWithDevTools } from "redux-devtools-extension"
 // import userReducer from "../redux/user"
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer  from "../redux/user"
+import authReducer from "../redux/auth";
+
 
 
 
 export default configureStore({
   reducer: {
     user: userReducer,
+    auth: authReducer
   },
 })
 
