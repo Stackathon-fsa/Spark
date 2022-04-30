@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 })
+// yuhh
 
 // const mapState = state => {
 //   return {
