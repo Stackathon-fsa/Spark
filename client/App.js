@@ -7,11 +7,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import Home from "./components/Home";
 import { Provider } from "react-redux";
 import store from "./store";
+import { useDispatch, useSelector } from "react-redux"
 // import {creatStackNavigator} from 'react-navigation'
 
 const Stack = createNativeStackNavigator()
 
 export default function App({ navigation }) {
+
   return (
     //     <View style={styles.container}>
     <Provider store={store}>

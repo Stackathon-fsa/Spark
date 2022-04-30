@@ -3,6 +3,8 @@ const db = require("./db")
 const User = require("./models/User")
 const Profile = require("./models/Profile")
 const Message = require("./models/Message")
+const Matches = require("./models/Matches")
+
 
 
 // one-to-one
@@ -14,12 +16,14 @@ User.hasMany(Message);
 Message.belongsTo(User);
 
 // through table with itself
-User.belongsToMany(User, {through: "user_matches", as: "matches"});
+// User.belongsToMany(User, { through: "user_matches", as: "matches" });
+User.belongsToMany(User, { through: Matches, as: "match" }), 
 
 
 module.exports = {
   db,
   User,
   Message,
-  Profile
+  Profile,
+  Matches
 }

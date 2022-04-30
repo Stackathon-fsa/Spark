@@ -2,6 +2,7 @@ const router = require("express").Router()
 module.exports = router
 
 router.use("/users", require("./users"))
+router.use("/profiles", require("./profiles"))
 
 
 router.use((req, res, next) => {

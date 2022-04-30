@@ -4,13 +4,15 @@ import thunkMiddleware from "redux-thunk"
 import { composeWithDevTools } from "redux-devtools-extension"
 // import userReducer from "../redux/user"
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer  from "../redux/user"
+import userReducer from "../redux/user"
+import homeReducer from "../redux/home"
 
 
 
 export default configureStore({
   reducer: {
     user: userReducer,
+    allProfiles: homeReducer,
   },
 })
 
