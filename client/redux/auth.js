@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 // import history from "../history";
-import {AsyncStorage} from "@react-native-async-storage/async-storage"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 // import {AsyncStorage} from "react-native";
 
 
@@ -58,6 +58,7 @@ export const authenticate = createAsyncThunk(
         username,
         password,
       });
+      console.log('token is', res.data.token)
       // window.localStorage.setItem(TOKEN, res.data.token);
       await AsyncStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
