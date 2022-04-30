@@ -6,12 +6,9 @@ import SingleUser from "./components/SingleUser"
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import Home from "./components/Home";
-// import { Provider } from "react-redux";
-// import store from "./store";
 import { me } from "./redux/auth";
 import Login from "./components/Login"
 import SignUp from "./components/SignUp"
-// import {creatStackNavigator} from 'react-navigation'
 
 const Stack = createNativeStackNavigator()
 
