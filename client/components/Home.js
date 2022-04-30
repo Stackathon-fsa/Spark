@@ -4,6 +4,8 @@ import { fetchAllProfiles } from "../redux/home"
 import { useDispatch, useSelector } from "react-redux"
 
 
+
+
 export default function Home({ navigation }) {
       const dispatch = useDispatch()
   const allProfiles = useSelector((state) => state.allProfiles)
