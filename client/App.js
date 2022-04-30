@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { useDispatch, useSelector } from "react-redux"
 // import {creatStackNavigator} from 'react-navigation'
+//MAKING CHANGES FOR GIT 
 
 const Stack = createNativeStackNavigator()
 
