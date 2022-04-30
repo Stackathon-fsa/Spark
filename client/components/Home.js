@@ -9,8 +9,8 @@ export default function Home({ navigation }) {
       const dispatch = useDispatch()
   const allProfiles = useSelector((state) => state.allProfiles)
   //  const auth = useSelector((state) => state.auth)
-  // console.log(' allPROFILES', allProfiles)
-  
+  console.log(' allPROFILES', allProfiles)
+
   // useEffect(() => {
   //   dispatch(fetchAllProfiles(auth.id))
   // }, [])
@@ -18,7 +18,7 @@ export default function Home({ navigation }) {
     useEffect(() => {
       dispatch(fetchAllProfiles())
     }, [])
-  
+
   function getRandomInt(max) {
     return Math.floor(Math.random() * max)
   }
@@ -27,7 +27,7 @@ export default function Home({ navigation }) {
   let rando = allProfiles.profiles[getRandomInt(allProfiles.profiles.length)] ||{imageUrl: ''}
   // console.log(getRandomInt(allProfiles.profiles.length))
   console.log("YEO", rando.imageUrl)
-  
+
   return (
     // <View style={styles.container}>
     //   <Text>WELCOME HOME CARLY!</Text>
@@ -53,7 +53,7 @@ export default function Home({ navigation }) {
         title="Logout"
         onPress={() => dispatch(logout())}
       >Logout</Button>
-      <Button 
+      <Button
         title="Like!"
         // onPress={() => navigation.navigate("SingleUser")}
       />
