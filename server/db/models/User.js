@@ -13,7 +13,8 @@ const User = db.define("user", {
     allowNull: false,
     validate: {
       notEmpty: true,
-    },
+    }
+  },
   password: {
     type: Sequelize.STRING,
     allowNull: false
@@ -25,8 +26,6 @@ const User = db.define("user", {
       isEmail: true
     }
   }
-  },
-
 })
 
 module.exports = User
