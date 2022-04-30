@@ -19,7 +19,7 @@ export default function App ({ navigation }) {
   const dispatch = useDispatch();
   const {user} = useSelector(state => state.auth);
   console.log('user is', user)
-  const isLoggedIn = !!user.id
+  const isLoggedIn = !!user
 
   useEffect(() => {
     dispatch(me())

@@ -13,8 +13,10 @@ target 'myapp' do
 
   use_react_native!(
     :path => config[:reactNativePath],
-    :hermes_enabled => podfile_properties['expo.jsEngine'] == 'hermes'
+    :hermes_enabled => podfile_properties['expo.jsEngine'] == 'hermes',
   )
+
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
 
   # Uncomment to opt-in to using Flipper
   #
@@ -47,3 +49,5 @@ target 'myapp' do
   end
 
 end
+
+
