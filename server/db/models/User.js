@@ -13,7 +13,8 @@ const User = db.define("user", {
     allowNull: false,
     validate: {
       notEmpty: true,
-    },
+    }
+  },
   password: {
     type: Sequelize.STRING,
     allowNull: false
@@ -25,11 +26,7 @@ const User = db.define("user", {
       isEmail: true
     }
   }
-  },
-
 })
-
-module.exports = User
 
 /**
  * instanceMethods
@@ -95,3 +92,5 @@ User.beforeValidate((user) => {
   }
 })
 User.beforeBulkCreate((users) => Promise.all(users.map(hashPassword)))
+
+module.exports = User
