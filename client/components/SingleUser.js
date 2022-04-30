@@ -5,9 +5,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchUser } from "../redux/user"
 
 export default function SingleUser({ navigation }) {
-    const dispatch = useDispatch()
-      const user = useSelector((state) => state.user)
-
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
 
   return (
     // <View style={styles.container}>

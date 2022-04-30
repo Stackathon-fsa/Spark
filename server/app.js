@@ -24,7 +24,7 @@ app.use(express.json())
 // app.get("/", (req, res) => res.send(404))
 
 // auth and api routes
-// app.use("/auth", require("./auth"))
+app.use("/auth", require("./auth"))
 app.use("/api", require("./api"))
 
 // app.get("/", (req, res) =>

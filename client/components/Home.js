@@ -1,9 +1,8 @@
+import { logout } from "../redux/auth"
 import React, { useEffect } from "react"
 import { StyleSheet, Text, View, Button, Image } from "react-native"
 import { fetchAllProfiles } from "../redux/home"
 import { useDispatch, useSelector } from "react-redux"
-
-
 
 
 export default function Home({ navigation }) {
@@ -51,6 +50,10 @@ export default function Home({ navigation }) {
         onPress={() => navigation.navigate("SingleUser")}
       />
       <Button
+        title="Logout"
+        onPress={() => dispatch(logout())}
+      >Logout</Button>
+      <Button 
         title="Like!"
         // onPress={() => navigation.navigate("SingleUser")}
       />

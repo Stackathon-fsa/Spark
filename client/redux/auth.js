@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 // import history from "../history";
-import { AsyncStorage } from "@react-native-async-storage/async-storage"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 const TOKEN = "token";
 
@@ -18,7 +18,7 @@ export const me = createAsyncThunk("auth/me", async () => {
   // const token = window.localStorage.getItem(TOKEN);
   const token = await AsyncStorage.getItem(TOKEN)
   if (token) {
-    const res = await axios.get("/auth/me", {
+    const res = await axios.get("http://localhost:8080/auth/me", {
       headers: {
         authorization: token,
       },
@@ -32,7 +32,7 @@ export const register = createAsyncThunk(
   async (formInfo, { dispatch, rejectWithValue }) => {
     try {
       const { username, password, email, formName } = formInfo;
-      const res = await axios.post(`/auth/${formName}`, {
+      const res = await axios.post(`http://localhost:8080/auth/${formName}`, {
         username,
         password,
         email,
@@ -52,10 +52,11 @@ export const authenticate = createAsyncThunk(
   async (formInfo, { dispatch, rejectWithValue }) => {
     try {
       const { username, password, formName } = formInfo;
-      const res = await axios.post(`/auth/${formName}`, {
+      const res = await axios.post(`http://localhost:8080/auth/${formName}`, {
         username,
         password,
       });
+      console.log('token is', res.data.token)
       // window.localStorage.setItem(TOKEN, res.data.token);
       await AsyncStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
