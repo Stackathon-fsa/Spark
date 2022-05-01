@@ -1,7 +1,7 @@
 import React , {useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { authenticate } from '../redux/auth'
-import {View, Text, SafeAreaView, TextInput, Button} from 'react-native'
+import {View, Text, SafeAreaView, TextInput, Button, StyleSheet} from 'react-native'
 // import { NativeScreenNavigationContainer } from 'react-native-screens';
 
 function Login({navigation}) {
@@ -16,24 +16,56 @@ function Login({navigation}) {
   }
 
   return (
-    <SafeAreaView>
-      <Text>Login in with your username and password!</Text>
+    <SafeAreaView style={styles.container}>
+      {/* <Text style={styles.text}>Login in with your username and password!</Text> */}
       <TextInput
+        style={styles.formInput}
         placeholder='username'
         textContentType='username'
         onChangeText={setUsername}
+        autoCapitalize='none'
       />
       <TextInput
-      placeholder='password'
+        style={styles.formInput}
+        placeholder='password'
         textContentType='password'
         onChangeText={setPassword}
+        autoCapitalize='none'
+        secureTextEntry={true}
       />
-      <Button title='Login' onPress={handleSubmit}>Log in</Button>
-      <Text>Don't have an account...?</Text>
-      <Button title='Signup' onPress={() => navigation.navigate('Signup')} />
+      <Button color='white' borderRadius={10} title='Log in' onPress={handleSubmit}>Log in</Button>
+      <Text style={styles.text}>Don't have an account?</Text>
+      <Button color='white' title='Sign up' onPress={() => navigation.navigate('Signup')} />
 
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FD3A73',
+    // backgroundColor: 'linear-gradient(#FD297B, #FF5864, #FF655B)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text: {
+    color: 'white',
+    marginTop: 30,
+  },
+  formInput: {
+    backgroundColor: 'white',
+    width: '55%',
+    borderRadius: 25,
+    height: 30,
+    textAlign: 'center',
+    margin: 8,
+  },
+  // button: {
+  //   borderRadius: 10,
+  //   color: 'white',
+  //   backgroundColor: 'white',
+  // }
+})
 
 export default Login;

@@ -7,9 +7,13 @@ import { useDispatch, useSelector } from "react-redux"
 export default function Home({ navigation }) {
   const dispatch = useDispatch()
   const allProfiles = useSelector((state) => state.allProfiles)
+
   const auth = useSelector((state) => state.auth)
   console.log("YESSSSS")
   console.log("AUUUUTHHHH", auth)
+
+  const {user} = useSelector(state => state.auth);
+
   //  const auth = useSelector((state) => state.auth)
   console.log(" allPROFILES", allProfiles)
 
@@ -65,7 +69,12 @@ export default function Home({ navigation }) {
 
       <Button
         title="SingleUser"
-        onPress={() => navigation.navigate("SingleUser")}
+        // onPress={() => navigation.navigate("SingleUser")}
+        onPress={() => navigation.navigate({
+          name: "SingleUser",
+          params: {id: user.id}
+        })}
+
       />
       <Button title="Logout" onPress={() => dispatch(logout())}>
         Logout
