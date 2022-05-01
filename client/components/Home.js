@@ -3,7 +3,7 @@ import React, { useEffect } from "react"
 import { StyleSheet, Text, View, Button, Image } from "react-native"
 import { fetchAllProfiles, addMatch } from "../redux/home"
 import { useDispatch, useSelector } from "react-redux"
-import funPic from "../../public/gary.PNG"
+// import funPic from "../../public/gary.PNG"
 
 //why is this component rendering on the login page ?
 //is that normally how react works?
@@ -102,14 +102,14 @@ export default function Home({ navigation }) {
             />
           </View>
         ) : (
-          // <Text>'NEED MORE STARTUP FUNDING, RAN OUT OF DATA'</Text>
-          <Image
-            source={{
-              uri: funPic,
-            }}
-            style={{ width: 1000, height: 700 }}
-          />
-        )}
+          <Text>'NEED MORE STARTUP FUNDING, RAN OUT OF DATA'</Text>
+        //   <Image
+        //     source={{
+        //       uri: funPic,
+        //     }}
+        //     style={{ width: 1000, height: 700 }}
+        //   />
+         )}
 
         {/* <Button
         title="fetchAllUser"
