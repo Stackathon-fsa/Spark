@@ -7,7 +7,7 @@ module.exports = router
 
 // GET /api/profiles/:userId
 router.get("/:userId", async (req, res, next) => {
-  console.log("REQ PARAMSSSSSSS", req.params.userId)
+  console.log("REQ PARAMSSSSSSS", req.params)
   
   try {
     console.log("Profile Backend DB Query!")
