@@ -1,12 +1,21 @@
 
-import React from "react"
+import React, {useEffect} from "react"
 import { StyleSheet, Text, View, Button } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchUser } from "../redux/user"
+import { fetchProfile} from "../redux/userProfile"
 
-export default function SingleUser({ navigation }) {
+export default function SingleUser({ navigation, route }) {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
+  const {profile} = useSelector(state => state.profile)
+
+  useEffect(() => {
+    // dispatch(fetchProfile(route.params.id))
+    dispatch(fetchProfile(7))
+  }, [])
+
+  console.log(profile)
 
   return (
     // <View style={styles.container}>
