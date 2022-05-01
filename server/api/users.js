@@ -7,7 +7,6 @@ module.exports = router
 //GET /api/users
 router.get("/", async (req, res, next) => {
   try {
-    console.log('YOOOOOOOOOOOOOOOOO')
     const users = await User.findAll()
     res.json(users)
   } catch (err) {
@@ -24,6 +23,7 @@ router.get("/:userId", async (req, res, next) => {
         userId: req.params.userId
       }
     })
+    console.log('profile is', profile)
     res.json(profile)
   } catch (err) {
     next(err)

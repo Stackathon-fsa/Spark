@@ -73,7 +73,6 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   // history.push("/login");
 });
 
-// Slice reducer - action creators and types are generated here
 const authSlice = createSlice({
   name: "auth",
   initialState,

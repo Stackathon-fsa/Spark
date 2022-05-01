@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import { me } from "./redux/auth";
 import Login from "./components/Login"
 import SignUp from "./components/SignUp"
+import EditProfile from "./components/EditProfile"
 
 const Stack = createNativeStackNavigator()
 
@@ -32,6 +33,7 @@ export default function App ({ navigation }) {
             options={{ title: "Home" }}
           />
           <Stack.Screen name="SingleUser" component={SingleUser} />
+          <Stack.Screen name="EditProfile" component={EditProfile} />
         </Stack.Navigator>
         :
         <Stack.Navigator initialRouteName="login">

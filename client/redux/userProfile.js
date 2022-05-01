@@ -12,7 +12,7 @@ export const fetchProfile = createAsyncThunk(
   "profile/fetchProfile",
   async (id) => {
     try {
-      const {data: profile} = axios.get(`http://localhost:8080/api/users/${id}`);
+      const {data: profile} = await axios.get(`http://localhost:8080/api/users/${id}`);
       return profile
     } catch (err) {
       console.error(err)
@@ -28,8 +28,9 @@ const profileSlice = createSlice({
     [fetchProfile.pending]: (state, action) => {
       state.status = "loading"
     },
-    [fetchProfile.fulfilled]: (state, { payload }) => {
-      state.user = payload
+    [fetchProfile.fulfilled]: (state, action) => {
+      console.log('action is', action )
+      state.profile = action.payload
       state.status = "success"
     },
     [fetchProfile.rejected]: (state, action) => {

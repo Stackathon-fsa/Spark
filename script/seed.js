@@ -36,6 +36,7 @@ const profiles = [
     interests: "Non-commital business ventures ",
     gold: false,
     imageUrl: "https://thumbs.dreamstime.com/b/casual-dude-smiling-2301915.jpg",
+    userId: 1
   },
   {
     bio: "can we split the bill?",
@@ -44,6 +45,7 @@ const profiles = [
     gold: false,
     imageUrl:
       "https://media.istockphoto.com/photos/funky-cool-serious-black-dude-picture-id182822374?s=612x612",
+    userId: 2
   },
   {
     bio: "is anyone else sweating?",
@@ -52,6 +54,7 @@ const profiles = [
     gold: false,
     imageUrl:
       "https://static3.depositphotos.com/1008005/244/i/950/depositphotos_2441782-stock-photo-dude.jpg",
+    userId: 3
   },
   {
     bio: "got banned off craigslist :/",
@@ -60,6 +63,7 @@ const profiles = [
     gold: false,
     imageUrl:
       "https://previews.123rf.com/images/keeweeboy/keeweeboy0706/keeweeboy070600016/980538-cool-dude-.jpg",
+    userId: 4
   },
   {
     bio: "too old for this app",
@@ -68,6 +72,7 @@ const profiles = [
     gold: false,
     imageUrl:
       "https://media.gettyimages.com/photos/hipster-dude-picture-id1281260617?s=2048x2048",
+    userId: 5
   },
 ]
 
@@ -126,7 +131,7 @@ const seed = async () => {
         email: "steve@gmail.com",
         password: "steve_pw",
       })
-    
+
      const user3 = await User.create({
        username: "Magic Bebra",
        email: "bebra@gmail.com",
