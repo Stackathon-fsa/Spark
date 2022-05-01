@@ -1,25 +1,19 @@
 import { logout } from "../redux/auth"
 import React, { useEffect } from "react"
 import { StyleSheet, Text, View, Button, Image } from "react-native"
-import { fetchAllProfiles } from "../redux/home"
+import { fetchAllProfiles, addMatch } from "../redux/home"
 import { useDispatch, useSelector } from "react-redux"
+
+//why is this component rendering on the login page ?
+//is that normally how react works?
 
 export default function Home({ navigation }) {
   const dispatch = useDispatch()
   const allProfiles = useSelector((state) => state.allProfiles)
 
   const auth = useSelector((state) => state.auth)
-  console.log("YESSSSS")
-  console.log("AUUUUTHHHH", auth)
 
-  const {user} = useSelector(state => state.auth);
-
-  //  const auth = useSelector((state) => state.auth)
-  console.log(" allPROFILES", allProfiles)
-
-  // useEffect(() => {
-  //   dispatch(fetchAllProfiles(auth.id))
-  // }, [])
+  const { user } = useSelector((state) => state.auth)
 
   useEffect(() => {
     dispatch(fetchAllProfiles(auth.user.id))
@@ -28,33 +22,28 @@ export default function Home({ navigation }) {
   function getRandomInt(max) {
     return Math.floor(Math.random() * max)
   }
-  let picRender = false;
-  let rando = {imageUrl: ''}
-  if (allProfiles.profiles) {
-     picRender = true
-    let rando = allProfiles.profiles[
-      getRandomInt(allProfiles.profiles.length)
-    ] || { imageUrl: "" }
-    console.log("LENGTH PAUSE", getRandomInt(allProfiles.profiles.length))
-    console.log("PICTURE", rando.imageUrl)
+
+  let picRender = false
+  let rando
+  let randomNum
+  let buttonRender 
+  console.log('ALL PROFILES', allProfiles.profiles)
+  if (allProfiles.profiles && allProfiles.profiles.length !== 0) {
+    randomNum = getRandomInt(allProfiles.profiles.length);
+    rando =
+      allProfiles.profiles[randomNum].imageUrl
+    console.log('RANDOM PROFILE', allProfiles.profiles[randomNum])
+    console.log("RANDOM NUMBERRRRR", randomNum)
+    picRender = true
   }
 
-  // console.log("BOOLEAN", picRender)
-  //  console.log(getRandomInt(allProfiles.profiles.length))
-  // let rando = allProfiles.profiles[getRandomInt(allProfiles.profiles.length)] ||{imageUrl: ''}
-  // console.log(getRandomInt(allProfiles.profiles.length))
-  // console.log("YEO", rando.imageUrl)
-
   return (
-    // <View style={styles.container}>
-    //   <Text>WELCOME HOME CARLY!</Text>
-    // </View>
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Home Screen </Text>
       {picRender ? (
         <Image
           source={{
-            uri: rando.imageUrl,
+            uri: rando,
           }}
           style={{ width: 500, height: 600 }}
         />
@@ -70,22 +59,39 @@ export default function Home({ navigation }) {
       <Button
         title="SingleUser"
         // onPress={() => navigation.navigate("SingleUser")}
-        onPress={() => navigation.navigate({
-          name: "SingleUser",
-          params: {id: user.id}
-        })}
-
+        onPress={() =>
+          navigation.navigate({
+            name: "SingleUser",
+            params: { id: user.id },
+          })
+        }
       />
       <Button title="Logout" onPress={() => dispatch(logout())}>
         Logout
       </Button>
       <Button
         title="Like!"
-        // onPress={() => navigation.navigate("SingleUser")}
+        onPress={() =>
+          dispatch(
+            addMatch({
+              userId: auth.user.id,
+              matchId: allProfiles.profiles[randomNum].id,
+              like: "yes",
+            })
+          )
+        }
       />
       <Button
         title="No!"
-        // onPress={() => navigation.navigate("SingleUser")}
+        onPress={() =>
+          dispatch(
+            addMatch({
+              userId: auth.user.id,
+              matchId: allProfiles.profiles[randomNum].id,
+              like: "no",
+            })
+          )
+        }
       />
       {/* <Button
         title="fetchAllUser"

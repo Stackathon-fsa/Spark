@@ -21,22 +21,23 @@ export const fetchAllProfiles = createAsyncThunk("user/fetchUser", async (id) =>
   }
 })
 
-// export const addMatch = createAsyncThunk(
-//   "user/addMatch",
-//   async (userId, matchId, like) => {
-//     try {
-//       const { data } = await axios.post(`http://localhost:8080/api/matches`, {
-//         userId: userId,
-//         matchId: matchId,
-//         like: like,
-//       })
-//       console.log("Data From AddMatch Thunk", data)
-//       return data
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
-// )
+export const addMatch = createAsyncThunk(
+  "user/addMatch",
+  async ({userId, matchId, like}) => {
+    try {
+      console.log("THUNK INPUT", userId, matchId, like)
+      const { data } = await axios.post(`http://localhost:8080/api/matches`, {
+        userId: userId,
+        matchId: matchId,
+        like: like,
+      })
+      console.log("Data From AddMatch Thunk", data)
+      return data
+    } catch (error) {
+      console.error(error)
+    }
+  }
+)
 
 export const homeSlice = createSlice({
   name: "user",
@@ -58,16 +59,22 @@ export const homeSlice = createSlice({
     [fetchAllProfiles.rejected]: (state, action) => {
       ;(state.status = "failed"), (state.error = action.payload)
     },
-    // [addMatch.pending]: (state, action) => {
-    //   state.status = "loading"
-    // },
-    // [addMatch.fulfilled]: (state, action) => {
-    //   console.log("action is", action)
-    //   state.status = "success"
-    // },
-    // [addMatch.rejected]: (state, action) => {
-    //   ;(state.status = "failed"), (state.error = action.payload)
-    // },
+    [addMatch.pending]: (state, action) => {
+      state.status = "loading"
+    },
+    [addMatch.fulfilled]: (state, action) => {
+      state.profiles = state.profiles.filter((profile) => {
+        console.log('PALOAD REDUCER' , action.payload)
+        if (profile.id !== action.payload.matchId) {
+          return profile
+        }
+      })
+      console.log("action is", action)
+      state.status = "success"
+    },
+    [addMatch.rejected]: (state, action) => {
+      ;(state.status = "failed"), (state.error = action.payload)
+    },
   },
 })
 
