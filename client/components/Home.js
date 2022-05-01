@@ -3,6 +3,7 @@ import React, { useEffect } from "react"
 import { StyleSheet, Text, View, Button, Image } from "react-native"
 import { fetchAllProfiles, addMatch } from "../redux/home"
 import { useDispatch, useSelector } from "react-redux"
+import funPic from "../../public/gary.PNG"
 
 //why is this component rendering on the login page ?
 //is that normally how react works?
@@ -26,7 +27,7 @@ export default function Home({ navigation }) {
   let picRender = false
   let rando
   let randomNum
-  let buttonRender 
+  let buttonRender = true;
   console.log('ALL PROFILES', allProfiles.profiles)
   if (allProfiles.profiles && allProfiles.profiles.length !== 0) {
     randomNum = getRandomInt(allProfiles.profiles.length);
@@ -37,68 +38,85 @@ export default function Home({ navigation }) {
     picRender = true
   }
 
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen </Text>
-      {picRender ? (
-        <Image
-          source={{
-            uri: rando,
-          }}
-          style={{ width: 500, height: 600 }}
-        />
-      ) : (
-        <Image
-          source={{
-            uri: "https://64.media.tumblr.com/84365fe19039b5fd917d6d449ca86290/tumblr_op4lb5DPRe1qg6rkio1_1280.jpg",
-          }}
-          style={{ width: 100, height: 100 }}
-        />
-      )}
+  if (allProfiles.profiles && allProfiles.profiles.length === 0) {
+    buttonRender = false
+  }
+  console.log(buttonRender)
+    return (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Text>Home Screen </Text>
+        {picRender ? (
+          <Image
+            source={{
+              uri: rando,
+            }}
+            style={{ width: 500, height: 600 }}
+          />
+        ) : (
+          <Image
+            source={{
+              uri: "https://64.media.tumblr.com/84365fe19039b5fd917d6d449ca86290/tumblr_op4lb5DPRe1qg6rkio1_1280.jpg",
+            }}
+            style={{ width: 100, height: 100 }}
+          />
+        )}
 
-      <Button
-        title="SingleUser"
-        // onPress={() => navigation.navigate("SingleUser")}
-        onPress={() =>
-          navigation.navigate({
-            name: "SingleUser",
-            params: { id: user.id },
-          })
-        }
-      />
-      <Button title="Logout" onPress={() => dispatch(logout())}>
-        Logout
-      </Button>
-      <Button
-        title="Like!"
-        onPress={() =>
-          dispatch(
-            addMatch({
-              userId: auth.user.id,
-              matchId: allProfiles.profiles[randomNum].id,
-              like: "yes",
+        <Button
+          title="SingleUser"
+          // onPress={() => navigation.navigate("SingleUser")}
+          onPress={() =>
+            navigation.navigate({
+              name: "SingleUser",
+              params: { id: user.id },
             })
-          )
-        }
-      />
-      <Button
-        title="No!"
-        onPress={() =>
-          dispatch(
-            addMatch({
-              userId: auth.user.id,
-              matchId: allProfiles.profiles[randomNum].id,
-              like: "no",
-            })
-          )
-        }
-      />
-      {/* <Button
+          }
+        />
+        <Button title="Logout" onPress={() => dispatch(logout())}>
+          Logout
+        </Button>
+        {buttonRender ? (
+          <View>
+            <Button
+              title="Like!"
+              onPress={() =>
+                dispatch(
+                  addMatch({
+                    userId: auth.user.id,
+                    matchId: allProfiles.profiles[randomNum].id,
+                    like: "yes",
+                  })
+                )
+              }
+            />
+            <Button
+              title="No!"
+              onPress={() =>
+                dispatch(
+                  addMatch({
+                    userId: auth.user.id,
+                    matchId: allProfiles.profiles[randomNum].id,
+                    like: "no",
+                  })
+                )
+              }
+            />
+          </View>
+        ) : (
+          // <Text>'NEED MORE STARTUP FUNDING, RAN OUT OF DATA'</Text>
+          <Image
+            source={{
+              uri: funPic,
+            }}
+            style={{ width: 1000, height: 700 }}
+          />
+        )}
+
+        {/* <Button
         title="fetchAllUser"
         onPress={() => dispatch(fetchAllProfiles())}
       /> */}
-    </View>
-  )
+      </View>
+    )
 }
 
 const styles = StyleSheet.create({
