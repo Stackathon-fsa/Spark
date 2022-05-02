@@ -45,12 +45,41 @@ export default function Home({ navigation }) {
     return (
       <View style={styles.container}>
         <Text style={styles.heading}>ꜱᴘᴀʀᴋ⚡</Text>
+        <View style={styles.container_logout}>
+          <Pressable
+            style={({ pressed }) => [
+              {
+                backgroundColor: pressed ? "#232122" : "#FFFFFF",
+              },
+              styles.logout,
+            ]}
+            onPress={() =>
+              navigation.navigate({
+                name: "SingleUser",
+                params: { id: user.id },
+              })
+            }
+          >
+            <Text style={styles.emoji}>🧑</Text>
+          </Pressable>
+          <Pressable
+            style={({ pressed }) => [
+              {
+                backgroundColor: pressed ? "#232122" : "#A5828C",
+              },
+              styles.logout,
+            ]}
+            onPress={() => dispatch(logout())}
+          >
+            <Text style={styles.emoji}>🚪</Text>
+          </Pressable>
+        </View>
         {picRender ? (
           <Image
             source={{
               uri: rando,
             }}
-            style={{ width: 500, height: 600 }}
+            style={{ width: 500, height: 600, borderRadius: 40 }}
           />
         ) : (
           // <Image
@@ -62,7 +91,7 @@ export default function Home({ navigation }) {
           <Text>NEED MORE STARTUP FUNDING, RAN OUT OF DATA</Text>
         )}
 
-        <Button
+        {/* <Button
           title="SingleUser"
           // onPress={() => navigation.navigate("SingleUser")}
           onPress={() =>
@@ -71,13 +100,14 @@ export default function Home({ navigation }) {
               params: { id: user.id },
             })
           }
-        />
-        <Button title="Logout" onPress={() => dispatch(logout())}>
+        /> */}
+        {/* <Button title="Logout" onPress={() => dispatch(logout())}>
           Logout
-        </Button>
+        </Button> */}
         {buttonRender ? (
           <View>
-            <Button
+            <View style={styles.container_button}>
+              {/* <Button
               title="Like!"
               onPress={() =>
                 dispatch(
@@ -88,8 +118,8 @@ export default function Home({ navigation }) {
                   })
                 )
               }
-            />
-            <Button
+            /> */}
+              {/* <Button
               style={{ width: 150, height: 150, borderRadius: 100 }}
               color="green"
               title="No!"
@@ -102,49 +132,79 @@ export default function Home({ navigation }) {
                   })
                 )
               }
-            />
-            {/* <TouchableHighlight activeOpacity={0.6} underlayColor="#000000">
+            /> */}
+              {/* <TouchableHighlight activeOpacity={0.6} underlayColor="#000000">
               <View> */}
-            <Pressable
-              style={({ pressed }) => [
-                {
-                  backgroundColor: pressed ? "#dddddd" : "#26EC7D",
-                },
-                styles.like_button,
-              ]}
-              onPress={() =>
-                dispatch(
-                  addMatch({
-                    userId: auth.user.id,
-                    matchId: allProfiles.profiles[randomNum].id,
-                    like: "no",
-                  })
-                )
-              }
-            >
-              <Text style={styles.text}>❤</Text>
-            </Pressable>
-            {/* </View>
+              <Pressable
+                style={({ pressed }) => [
+                  {
+                    backgroundColor: pressed ? "#dddddd" : "#26EC7D",
+                  },
+                  styles.like_button,
+                ]}
+                onPress={() =>
+                  dispatch(
+                    addMatch({
+                      userId: auth.user.id,
+                      matchId: allProfiles.profiles[randomNum].id,
+                      like: "yes",
+                    })
+                  )
+                }
+              >
+                <Text style={styles.text}>❤</Text>
+              </Pressable>
+              {/* </View>
             </TouchableHighlight> */}
-            <Pressable
+              <Pressable
+                style={({ pressed }) => [
+                  {
+                    backgroundColor: pressed ? "#dddddd" : "#A40F3A",
+                  },
+                  styles.dislike_button,
+                ]}
+                onPress={() =>
+                  dispatch(
+                    addMatch({
+                      userId: auth.user.id,
+                      matchId: allProfiles.profiles[randomNum].id,
+                      like: "no",
+                    })
+                  )
+                }
+              >
+                <Text style={styles.text}>❌</Text>
+              </Pressable>
+            </View>
+            {/* <View style={styles.container_logout}>
+              <Pressable
+                style={({ pressed }) => [
+                  {
+                    backgroundColor: pressed ? "#232122" : "#A5828C",
+                  },
+                  styles.logout,
+                ]}
+                onPress={() => dispatch(logout())}
+              >
+                <Text style={styles.emoji}>🚪</Text>
+              </Pressable>
+            </View> */}
+            {/* <Pressable
               style={({ pressed }) => [
                 {
-                  backgroundColor: pressed ? "#dddddd" : "#A40F3A",
+                  backgroundColor: pressed ? "#232122" : "#FFFFFF",
                 },
-                styles.dislike_button,
+                styles.logout,
               ]}
               onPress={() =>
-                dispatch(
-                  addMatch({
-                    userId: auth.user.id,
-                    matchId: allProfiles.profiles[randomNum].id,
-                    like: "no",
-                  })
-                )
+                navigation.navigate({
+                  name: "SingleUser",
+                  params: { id: user.id },
+                })
               }
             >
-              <Text style={styles.text}>❌</Text>
-            </Pressable>
+              <Text style={styles.emoji}>🧑</Text>
+            </Pressable> */}
           </View>
         ) : (
           <Text>NEED MORE STARTUP FUNDING, RAN OUT OF DATA</Text>
@@ -171,6 +231,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  container_button: {
+    // flex: 1,
+    backgroundColor: "#FD3A73",
+    // alignItems: "center",
+    // justifyContent: "center",
+    flexDirection: "row",
+    marginTop: 20,
+  },
+  container_logout: {
+    // flex: 1,
+    backgroundColor: "#FD3A73",
+    // alignItems: "center",
+    justifyContent: "flex-end",
+    flexDirection: "row",
+    marginBottom: 20,
+  },
+
+  main_pic: {
+    borderRadius: 10,
+  },
+
   // button: {
   //   borderRadius: 100,
   //   height: 20,
@@ -181,26 +262,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    paddingHorizontal: 1,
+    paddingHorizontal: 15,
     borderRadius: 100,
     elevation: 3,
     // backgroundColor: "#26EC7D",
     borderColor: "white",
     borderWidth: 1,
+    marginRight: 200,
   },
   dislike_button: {
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    paddingHorizontal: 1,
+    paddingHorizontal: 12,
     borderRadius: 100,
     elevation: 3,
     // backgroundColor: "#A40F3A",
     borderColor: "black",
     borderWidth: 1,
+    marginLeft: 200,
   },
   text: {
-    fontSize: 16,
+    fontSize: 30,
     lineHeight: 21,
     fontWeight: "bold",
     letterSpacing: 0.25,
@@ -218,5 +301,38 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "white",
     marginBottom: 40,
+  },
+  logout: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderRadius: 100,
+    elevation: 3,
+    // backgroundColor: "#A40F3A",
+    borderColor: "black",
+    borderWidth: 1,
+    marginLeft: 10
+  },
+
+  profile: {
+   alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 5,
+    borderRadius: 100,
+    elevation: 3,
+    // backgroundColor: "#A40F3A",
+    borderColor: "black",
+    borderWidth: 1,
+    marginRight: 10
+
+  },
+  emoji: {
+    fontSize: 35,
+    lineHeight: 21,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "white",
   },
 })
