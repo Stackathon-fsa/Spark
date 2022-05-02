@@ -4,6 +4,9 @@ const db = require("../db")
 // defaults are empty immediately when user is created, should prob take user straight to profile page to edit
 // bio could go string or text depending on if we want the user to give their life story
 const Profile = db.define("profile", {
+  name: {
+    type: Sequelize.STRING
+  },
   bio: {
     type: Sequelize.STRING,
   },

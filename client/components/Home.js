@@ -11,7 +11,7 @@ import {
 } from "react-native"
 import { fetchAllProfiles, addMatch } from "../redux/home"
 import { useDispatch, useSelector } from "react-redux"
-import funPic from "../../public/gary.PNG"
+// import funPic from "../../public/gary.PNG"
 
 //why is this component rendering on the login page ?
 //is that normally how react works?
@@ -142,7 +142,6 @@ export default function Home({ navigation }) {
               <Text style={styles.text}>❌</Text>
             </Pressable>
           </View>
-        </View>
       ) : (
         <Text>NEED MORE STARTUP FUNDING, RAN OUT OF DATA</Text>
       )}

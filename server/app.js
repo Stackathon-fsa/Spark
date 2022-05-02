@@ -15,7 +15,7 @@ app.use(
 // logging middleware
 app.use(morgan("dev"))
 
- console.log("YOOOOOOOOOOOOOOOOO")
+console.log("YOOOOOOOOOOOOOOOOO")
 
 // body parsing middleware
 app.use(express.json())

@@ -1,4 +1,5 @@
 const router = require("express").Router()
+// const { default: user } = require("../../client/redux/user")
 const { User, Profile } = require("../db")
 
 module.exports = router
@@ -15,7 +16,6 @@ router.get("/", async (req, res, next) => {
 })
 
 // GET /api/users/:userId
-// creating this to only fetch a user profile
 router.get("/:userId", async (req, res, next) => {
   try {
     const profile = await Profile.findOne({
@@ -23,8 +23,20 @@ router.get("/:userId", async (req, res, next) => {
         userId: req.params.userId
       }
     })
-    console.log('profile is', profile)
     res.json(profile)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put("/:userId", async (req, res, next) => {
+  try {
+    const profile = await Profile.findOne({
+      where: {
+        userId: req.params.userId
+      }
+    })
+    res.send(await profile.update(req.body))
   } catch (err) {
     next(err)
   }
