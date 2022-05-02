@@ -31,14 +31,17 @@ const users = [
 
 const profiles = [
   {
+    name: "Mark",
     bio: "do you like the photo of me and my fish? Yeah, widemouth grouper, you know what they say",
     age: 29,
     interests: "Non-commital business ventures ",
     gold: false,
-    imageUrl: "https://thumbs.dreamstime.com/b/casual-dude-smiling-2301915.jpg",
+    // imageUrl: "https://thumbs.dreamstime.com/b/casual-dude-smiling-2301915.jpg",
+    imageUrl: "https://preview.redd.it/q0whroyf15p81.jpg?width=640&crop=smart&auto=webp&s=60a93cd63573c713da211fe58bb6969df465a0b0",
     userId: 1
   },
   {
+    name: "Brian",
     bio: "can we split the bill?",
     age: 19,
     interests: "fornite/roblox/minecraft hunger games server",
@@ -48,6 +51,7 @@ const profiles = [
     userId: 2
   },
   {
+    name: "Frank",
     bio: "is anyone else sweating?",
     age: 21,
     interests: "love adventures, love food, love breathing",
@@ -57,6 +61,7 @@ const profiles = [
     userId: 3
   },
   {
+    name: "John",
     bio: "got banned off craigslist :/",
     age: 31,
     interests: "trying to track down the zodiac killer",
@@ -66,6 +71,7 @@ const profiles = [
     userId: 4
   },
   {
+    name: "Erik",
     bio: "too old for this app",
     age: 45,
     interests: "one mid life crisis way from buying a jetski ",
@@ -140,6 +146,7 @@ const seed = async () => {
 
 
     const profile1 = await Profile.create({
+      name: "Stanco",
       bio: "loyal, 6'3, italian",
       age: 24,
       interests: "DD/cargo shorts/ deadlifting/ mayonnaise",
@@ -147,6 +154,7 @@ const seed = async () => {
     })
 
        const profile2 = await Profile.create({
+         name: "Crazy Steve",
          bio: "up to no good ",
          age: 24,
          interests: "spongebob",
