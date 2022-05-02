@@ -44,8 +44,8 @@ function Login({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FD3A73',
     // backgroundColor: 'linear-gradient(#FD297B, #FF5864, #FF655B)',
+    backgroundColor: '#FD3A73',
     alignItems: 'center',
     justifyContent: 'center',
   },
