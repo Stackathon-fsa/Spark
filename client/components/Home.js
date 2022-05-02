@@ -1,6 +1,6 @@
 import { logout } from "../redux/auth"
 import React, { useEffect } from "react"
-import { StyleSheet, Text, View, Button, Image } from "react-native"
+import { StyleSheet, Text, View, Button, Image, Pressable, TouchableHighlight } from "react-native"
 import { fetchAllProfiles, addMatch } from "../redux/home"
 import { useDispatch, useSelector } from "react-redux"
 import funPic from "../../public/gary.PNG"
@@ -43,8 +43,8 @@ export default function Home({ navigation }) {
   }
   console.log(buttonRender)
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Home Screen </Text>
+      <View style={styles.container}>
+        <Text style={styles.heading}>ꜱᴘᴀʀᴋ⚡</Text>
         {picRender ? (
           <Image
             source={{
@@ -53,12 +53,13 @@ export default function Home({ navigation }) {
             style={{ width: 500, height: 600 }}
           />
         ) : (
-          <Image
-            source={{
-              uri: "https://64.media.tumblr.com/84365fe19039b5fd917d6d449ca86290/tumblr_op4lb5DPRe1qg6rkio1_1280.jpg",
-            }}
-            style={{ width: 100, height: 100 }}
-          />
+          // <Image
+          //   source={{
+          //     uri: "https://64.media.tumblr.com/84365fe19039b5fd917d6d449ca86290/tumblr_op4lb5DPRe1qg6rkio1_1280.jpg",
+          //   }}
+          //   style={{ width: 100, height: 100 }}
+          // />
+          <Text>NEED MORE STARTUP FUNDING, RAN OUT OF DATA</Text>
         )}
 
         <Button
@@ -89,6 +90,8 @@ export default function Home({ navigation }) {
               }
             />
             <Button
+              style={{ width: 150, height: 150, borderRadius: 100 }}
+              color="green"
               title="No!"
               onPress={() =>
                 dispatch(
@@ -100,15 +103,57 @@ export default function Home({ navigation }) {
                 )
               }
             />
+            {/* <TouchableHighlight activeOpacity={0.6} underlayColor="#000000">
+              <View> */}
+            <Pressable
+              style={({ pressed }) => [
+                {
+                  backgroundColor: pressed ? "#dddddd" : "#26EC7D",
+                },
+                styles.like_button,
+              ]}
+              onPress={() =>
+                dispatch(
+                  addMatch({
+                    userId: auth.user.id,
+                    matchId: allProfiles.profiles[randomNum].id,
+                    like: "no",
+                  })
+                )
+              }
+            >
+              <Text style={styles.text}>❤</Text>
+            </Pressable>
+            {/* </View>
+            </TouchableHighlight> */}
+            <Pressable
+              style={({ pressed }) => [
+                {
+                  backgroundColor: pressed ? "#dddddd" : "#A40F3A",
+                },
+                styles.dislike_button,
+              ]}
+              onPress={() =>
+                dispatch(
+                  addMatch({
+                    userId: auth.user.id,
+                    matchId: allProfiles.profiles[randomNum].id,
+                    like: "no",
+                  })
+                )
+              }
+            >
+              <Text style={styles.text}>❌</Text>
+            </Pressable>
           </View>
         ) : (
-          // <Text>'NEED MORE STARTUP FUNDING, RAN OUT OF DATA'</Text>
-          <Image
-            source={{
-              uri: funPic,
-            }}
-            style={{ width: 1000, height: 700 }}
-          />
+          <Text>NEED MORE STARTUP FUNDING, RAN OUT OF DATA</Text>
+          // <Image
+          //   source={{
+          //     uri: funPic,
+          //   }}
+          //   style={{ width: 1000, height: 700 }}
+          // />
         )}
 
         {/* <Button
@@ -122,8 +167,56 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#FD3A73",
     alignItems: "center",
     justifyContent: "center",
+  },
+  // button: {
+  //   borderRadius: 100,
+  //   height: 20,
+  //   width: 20,
+  //   color: "purple",
+  // },
+  like_button: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 1,
+    borderRadius: 100,
+    elevation: 3,
+    // backgroundColor: "#26EC7D",
+    borderColor: "white",
+    borderWidth: 1,
+  },
+  dislike_button: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 1,
+    borderRadius: 100,
+    elevation: 3,
+    // backgroundColor: "#A40F3A",
+    borderColor: "black",
+    borderWidth: 1,
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "white",
+  },
+  touchDown: {
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10,
+  },
+  heading: {
+    fontSize: 70,
+    lineHeight: 21,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "white",
+    marginBottom: 40,
   },
 })
