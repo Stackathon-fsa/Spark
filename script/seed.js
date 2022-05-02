@@ -32,7 +32,7 @@ const users = [
 const profiles = [
   {
     name: "Mark",
-    bio: "do you like the photo of me and my fish? Yeah, widemouth grouper, you know what they say",
+    bio: "do you like the photo of me and my fish?",
     age: 29,
     interests: "Non-commital business ventures ",
     gold: false,
