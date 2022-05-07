@@ -17,7 +17,6 @@ function Login({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <Text style={styles.text}>Login in with your username and password!</Text> */}
       <TextInput
         style={styles.formInput}
         placeholder='username'
