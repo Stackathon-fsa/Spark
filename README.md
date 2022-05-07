@@ -1,4 +1,4 @@
 # Spark
 
-Spark is a mobile application inspired by Tinder!
+Spark is a mobile dating application inspired by Tinder!
 
