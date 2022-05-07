@@ -34,5 +34,5 @@ In the near future there will be some additions to the current application, incl
 ## Contact Us
 
 LinkedIn: 
-- www.linkedin.com/in/bekimsin
+- https://www.linkedin.com/in/bekimsin/
 - https://www.linkedin.com/in/brianswe/
