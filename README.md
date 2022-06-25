@@ -2,7 +2,13 @@
 
 Spark is a mobile dating application inspired by Tinder!
 
-![Alt text](/public/profile.png?raw=true "User Profile")
+<!-- ![Alt text](/public/profile.png?raw=true "User Profile")
+ -->
+<div display="flex" direction="column" justify-content="center" align="center">
+  <div><img src="/public/homePage.png" width="350px" height="550px"/></div>
+  <div><img src="/public/profile.png" width="350px" height="550px"/></div>
+  <div><img src="/public/editProfile.png" width="350px" height="550px"/></div>
+</div>
 
 
 ## Using Spark
