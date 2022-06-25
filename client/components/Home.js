@@ -11,10 +11,6 @@ import {
 } from "react-native"
 import { fetchAllProfiles, addMatch } from "../redux/home"
 import { useDispatch, useSelector } from "react-redux"
-// import funPic from "../../public/gary.PNG"
-
-//why is this component rendering on the login page ?
-//is that normally how react works?
 
 export default function Home({ navigation }) {
   const dispatch = useDispatch()
@@ -160,23 +156,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   container_button: {
-    // flex: 1,
     backgroundColor: "#FD3A73",
-    // alignItems: "center",
-    // justifyContent: "center",
     flexDirection: "row",
     marginTop: 20,
   },
   container_logout: {
-    // flex: 1,
     backgroundColor: "#FD3A73",
-    // alignItems: "center",
     justifyContent: "flex-end",
     flexDirection: "row",
     marginBottom: 10,
   },
   container_details: {
-    // flex: 1,
     backgroundColor: "#FD3A73",
     marginBottom: 40,
   },
@@ -189,8 +179,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 15,
     borderRadius: 100,
-    // elevation: 3,
-    // backgroundColor: "#26EC7D",
     borderColor: "white",
     borderWidth: 1,
     marginRight: 110,
@@ -199,14 +187,9 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 15,
     borderRadius: 100,
-    // elevation: 3,
-    // backgroundColor: "#A40F3A",
     borderColor: "black",
     borderWidth: 1,
     marginLeft: 0,
-    // position: "absolute",
-    // bottom: 0,
-    // left: 20
   },
   text: {
     fontSize: 10,
@@ -244,7 +227,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 100,
     elevation: 3,
-    // backgroundColor: "#A40F3A",
     borderColor: "black",
     borderWidth: 1,
     marginLeft: 10,
@@ -255,7 +237,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     borderRadius: 100,
     elevation: 3,
-    // backgroundColor: "#A40F3A",
     borderColor: "black",
     borderWidth: 1,
     marginRight: 10,

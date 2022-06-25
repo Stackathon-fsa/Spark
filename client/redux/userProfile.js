@@ -64,6 +64,5 @@ const profileSlice = createSlice({
   }
 })
 
-// export default profileSlice.reducer;
 const userProfileReducer = profileSlice.reducer
 export default userProfileReducer

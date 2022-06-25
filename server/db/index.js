@@ -6,7 +6,6 @@ const Message = require("./models/Message")
 const Matches = require("./models/Matches")
 
 
-
 // one-to-one
 User.hasOne(Profile);
 Profile.belongsTo(User);
@@ -16,8 +15,7 @@ User.hasMany(Message);
 Message.belongsTo(User);
 
 // through table with itself
-// User.belongsToMany(User, { through: "user_matches", as: "matches" });
-User.belongsToMany(User, { through: Matches, as: "match" }), 
+User.belongsToMany(User, { through: Matches, as: "match" }),
 
 
 module.exports = {

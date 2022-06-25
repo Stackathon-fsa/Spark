@@ -2,7 +2,6 @@ import React , {useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { authenticate } from '../redux/auth'
 import {View, Text, SafeAreaView, TextInput, Button, StyleSheet} from 'react-native'
-// import { NativeScreenNavigationContainer } from 'react-native-screens';
 
 function Login({navigation}) {
   const dispatch = useDispatch();
@@ -43,7 +42,6 @@ function Login({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'linear-gradient(#FD297B, #FF5864, #FF655B)',
     backgroundColor: '#FD3A73',
     alignItems: 'center',
     justifyContent: 'center',
@@ -60,11 +58,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 8,
   },
-  // button: {
-  //   borderRadius: 10,
-  //   color: 'white',
-  //   backgroundColor: 'white',
-  // }
 })
 
 export default Login;

@@ -17,7 +17,6 @@ export default function SignUp({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <Text>Create a new account!</Text> */}
       <TextInput
         style={styles.formInput}
         placeholder='username'
@@ -63,9 +62,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 8
   },
-  // button: {
-  //   borderRadius: 10,
-  //   color: 'white',
-  //   backgroundColor: 'white'
-  // }
 })

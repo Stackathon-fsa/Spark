@@ -1,16 +1,6 @@
 import axios from "axios"
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 
-// export const fetchAllProfiles = createAsyncThunk("user/fetchUser", async () => {
-//   try {
-//     const { data } = await axios.get(`http://localhost:8080/api/profiles`)
-//     console.log("Data From fetchAllProfiles Thunk", data)
-//     return data
-//   } catch (error) {
-//     console.error(error)
-//   }
-// })
-
 export const fetchAllProfiles = createAsyncThunk("user/fetchUser", async (id) => {
   try {
     const { data } = await axios.get(`http://localhost:8080/api/profiles/${id}`)

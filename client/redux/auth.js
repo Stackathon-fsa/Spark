@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-// import history from "../history";
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
 const TOKEN = "token";
@@ -12,10 +11,7 @@ const initialState = {
   loading: false,
 };
 
-// create thunk
-
 export const me = createAsyncThunk("auth/me", async () => {
-  // const token = window.localStorage.getItem(TOKEN);
   const token = await AsyncStorage.getItem(TOKEN)
   if (token) {
     const res = await axios.get("http://localhost:8080/auth/me", {
@@ -37,7 +33,6 @@ export const register = createAsyncThunk(
         password,
         email,
       });
-      // window.localStorage.setItem(TOKEN, res.data.token);
       await AsyncStorage.setItem(TOKEN, res.data.token)
       dispatch(me());
     } catch (error) {
@@ -57,7 +52,6 @@ export const authenticate = createAsyncThunk(
         password,
       });
       console.log('token is', res.data.token)
-      // window.localStorage.setItem(TOKEN, res.data.token);
       await AsyncStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
     } catch (error) {
@@ -68,9 +62,7 @@ export const authenticate = createAsyncThunk(
 );
 
 export const logout = createAsyncThunk("auth/logout", async () => {
-  // window.localStorage.removeItem(TOKEN);
   await AsyncStorage.removeItem(TOKEN);
-  // history.push("/login");
 });
 
 const authSlice = createSlice({
