@@ -2,6 +2,9 @@
 
 Spark is a mobile dating application inspired by Tinder!
 
+![Alt text](/public/profile.png?raw=true "User Profile")
+
+
 ## Using Spark
 
 Spark currently is not deployed, so please feel free to fork the repo
