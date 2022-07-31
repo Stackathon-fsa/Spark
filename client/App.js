@@ -16,7 +16,6 @@ const Stack = createNativeStackNavigator()
 export default function App ({ navigation }) {
   const dispatch = useDispatch();
   const {user} = useSelector(state => state.auth);
-  console.log('user is', user)
   const isLoggedIn = !!user
 
   useEffect(() => {

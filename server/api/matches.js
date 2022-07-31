@@ -18,7 +18,6 @@ router.get("/", async (req, res, next) => {
 //POST /api/matches
 router.post("/", async (req, res, next) => {
     try {
-      console.log('YERRRRRRRRRR')
       res.status(201).json(
         await Matches.create({
           userId: req.body.userId,

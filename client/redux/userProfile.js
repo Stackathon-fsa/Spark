@@ -41,7 +41,6 @@ const profileSlice = createSlice({
       state.status = "loading"
     },
     [fetchProfile.fulfilled]: (state, action) => {
-      console.log('action is', action )
       state.profile = action.payload
       state.status = "success"
     },
@@ -53,7 +52,6 @@ const profileSlice = createSlice({
       state.status = "loading"
     },
     [editProfile.fulfilled]: (state, action) => {
-      console.log('payload is', action)
       state.profile = action.payload
       state.status = "success"
     },

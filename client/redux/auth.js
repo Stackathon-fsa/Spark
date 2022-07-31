@@ -51,7 +51,6 @@ export const authenticate = createAsyncThunk(
         username,
         password,
       });
-      console.log('token is', res.data.token)
       await AsyncStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
     } catch (error) {

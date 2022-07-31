@@ -7,7 +7,6 @@ import { fetchProfile} from "../redux/userProfile"
 export default function SingleUser({ navigation, route }) {
   const dispatch = useDispatch()
   const {profile} = useSelector(state => state.profile)
-  console.log('id is', route.params.id)
   const userId = route.params.id
 
   useEffect(() => {

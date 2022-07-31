@@ -6,10 +6,8 @@ module.exports = router
 
 // GET /api/profiles/:userId
 router.get("/:userId", async (req, res, next) => {
-  console.log("REQ PARAMSSSSSSS", req.params)
 
   try {
-    console.log("Profile Backend DB Query!")
 
     //matches will be an array containing all the actions a user has completed
     //we want to filter out all the matchId from our profiles that we fetched
@@ -41,7 +39,6 @@ router.get("/:userId", async (req, res, next) => {
 //GET /api/profiles
 router.get("/", async (req, res, next) => {
   try {
-    console.log("Profile Backend DB Query!")
     const profiles = await Profile.findAll()
     res.json(profiles)
   } catch (err) {

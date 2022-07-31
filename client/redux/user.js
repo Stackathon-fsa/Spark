@@ -6,7 +6,6 @@ export const fetchUser = createAsyncThunk(
   async () => {
     try {
       const { data } = await axios.get(`http://localhost:8080/api/users`)
-      console.log('Data From Thunk', data);
       return data
     } catch (error) {
       console.error(error)
