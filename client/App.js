@@ -31,8 +31,8 @@ export default function App ({ navigation }) {
             component={Home}
             options={{ title: "Home" }}
           />
-          <Stack.Screen name="SingleUser" component={SingleUser} />
-          <Stack.Screen name="EditProfile" component={EditProfile} />
+          <Stack.Screen name="Profile" component={SingleUser} />
+          <Stack.Screen name="Edit" component={EditProfile} />
         </Stack.Navigator>
         :
         <Stack.Navigator initialRouteName="login">
@@ -44,7 +44,7 @@ export default function App ({ navigation }) {
           <Stack.Screen
             name='Signup'
             component={SignUp}
-            options={{title: "Signup"}}
+            options={{title: "Sign Up"}}
           />
         </Stack.Navigator>
         }

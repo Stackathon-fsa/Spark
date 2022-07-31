@@ -60,7 +60,7 @@ export default function Home({ navigation }) {
           ]}
           onPress={() =>
             navigation.navigate({
-              name: "SingleUser",
+              name: "Profile",
               params: { id: user.id },
             })
           }

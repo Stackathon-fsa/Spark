@@ -31,7 +31,7 @@ export default function SingleUser({ navigation, route }) {
           title="Edit Profile"
           style={{marginTop: 100,}}
           onPress={() => navigation.navigate({
-            name: "EditProfile",
+            name: "Edit",
             params: {profile}
           })}
         />
