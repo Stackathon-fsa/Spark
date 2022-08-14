@@ -3,7 +3,7 @@ const router = require("express").Router()
 const { User, Profile } = require("../db")
 
 module.exports = router
-//  Here we are "mounted on" (starts with) /api/users
+// mounted on /api/users
 
 //GET /api/users
 router.get("/", async (req, res, next) => {
