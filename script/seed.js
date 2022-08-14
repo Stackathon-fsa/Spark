@@ -107,10 +107,6 @@ const seed = async () => {
   try {
     await db.sync({ force: true })
 
-    // const user1 = await User.create({
-    //   username: "spencer69",
-    // })
-
     await Promise.all(
       users.map((user) => {
         return User.create(user)

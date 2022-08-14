@@ -14,18 +14,26 @@ import { useDispatch, useSelector } from "react-redux"
 
 export default function Home({ navigation }) {
   const dispatch = useDispatch()
-  const allProfiles = useSelector((state) => state.allProfiles)
-
-  const auth = useSelector((state) => state.auth)
-
+  const { profiles } = useSelector((state) => state.allProfiles)
   const { user } = useSelector((state) => state.auth)
 
+  // added inside useEffect not sure where initial axios error is coming from -> /api/profiles/undefined
   useEffect(() => {
-    dispatch(fetchAllProfiles(auth.user.id))
-  }, [])
+    if (user) {
+      dispatch(fetchAllProfiles(user.id))
+    }
+  }, [user])
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * max)
+  }
+
+  function swipe(userId, matchId, like) {
+    dispatch(addMatch({
+      userId,
+      matchId,
+      like
+    }))
   }
 
   let picRender = false
@@ -35,28 +43,29 @@ export default function Home({ navigation }) {
   let name
   let interests
   let bio
-  if (allProfiles.profiles && allProfiles.profiles.length !== 0) {
-    randomNum = getRandomInt(allProfiles.profiles.length)
-    rando = allProfiles.profiles[randomNum].imageUrl
-    bio = allProfiles.profiles[randomNum].bio
-    interests = allProfiles.profiles[randomNum].interests
-    picRender = true
+  if (profiles && profiles.length !== 0) {
+    randomNum = getRandomInt(profiles.length);
+    rando = profiles[randomNum].imageUrl;
+    bio = profiles[randomNum].bio;
+    interests = profiles[randomNum].interests;
+    picRender = true;
   }
 
-  if (allProfiles.profiles && allProfiles.profiles.length === 0) {
-    buttonRender = false
+  if (profiles && profiles.length === 0) {
+    buttonRender = false;
   }
-  console.log(buttonRender)
+
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>ꜱᴘᴀʀᴋ⚡</Text>
-      <View style={styles.container_logout}>
-        <Pressable
+       <Pressable
           style={({ pressed }) => [
             {
               backgroundColor: pressed ? "#232122" : "#FFFFFF",
+              position: "absolute",
+              left: 15,
+              top: 10
             },
-            styles.logout,
+            styles.profileAndLogout,
           ]}
           onPress={() =>
             navigation.navigate({
@@ -65,20 +74,28 @@ export default function Home({ navigation }) {
             })
           }
         >
-          <Text style={styles.emoji}>🧑</Text>
-        </Pressable>
-        <Pressable
+        <Text style={styles.emoji}>🧑</Text>
+      </Pressable>
+
+      <Pressable
           style={({ pressed }) => [
             {
               backgroundColor: pressed ? "#232122" : "#A5828C",
+              position: "absolute",
+              right: 15,
+              top: 10
             },
-            styles.logout,
+            styles.profileAndLogout,
           ]}
           onPress={() => dispatch(logout())}
         >
           <Text style={styles.emoji}>🚪</Text>
-        </Pressable>
+      </Pressable>
+
+      <View style={styles.header}>
+        <Text style={styles.heading}>ꜱᴘᴀʀᴋ⚡</Text>
       </View>
+
       {picRender ? (
         <React.Fragment>
           <View style={styles.container_details}>
@@ -89,7 +106,7 @@ export default function Home({ navigation }) {
             source={{
               uri: rando,
             }}
-            style={{ width: 240, height: 280, borderRadius: 40 }}
+            style={{ width: 280, height: 320, borderRadius: 40 }}
           />
         </React.Fragment>
 
@@ -108,15 +125,7 @@ export default function Home({ navigation }) {
                 },
                 styles.like_button,
               ]}
-              onPress={() =>
-                dispatch(
-                  addMatch({
-                    userId: auth.user.id,
-                    matchId: allProfiles.profiles[randomNum].id,
-                    like: "yes",
-                  })
-                )
-              }
+              onPress={() => swipe(user.id, profiles[randomNum].id, true)}
             >
               <Text style={styles.text}>❤</Text>
             </Pressable>
@@ -127,15 +136,7 @@ export default function Home({ navigation }) {
                 },
                 styles.dislike_button,
               ]}
-              onPress={() =>
-                dispatch(
-                  addMatch({
-                    userId: auth.user.id,
-                    matchId: allProfiles.profiles[randomNum].id,
-                    like: "no",
-                  })
-                )
-              }
+              onPress={() => swipe(user.id, profiles[randomNum].id, false)}
             >
               <Text style={styles.text}>❌</Text>
             </Pressable>
@@ -144,6 +145,7 @@ export default function Home({ navigation }) {
       ) : (
         <Text>NEED MORE STARTUP FUNDING, RAN OUT OF DATA</Text>
       )}
+
     </View>
   )
 }
@@ -154,6 +156,23 @@ const styles = StyleSheet.create({
     backgroundColor: "#FD3A73",
     alignItems: "center",
     justifyContent: "center",
+  },
+  bottom: {
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "white",
+    height: 100,
+    width: "100%",
+    position: "absolute",
+    bottom: 0
+  },
+  header: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+     alignContent: "space-between",
+    position: "absolute",
+    top: 15
   },
   container_button: {
     backgroundColor: "#FD3A73",
@@ -170,11 +189,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#FD3A73",
     marginBottom: 40,
   },
-
   main_pic: {
     borderRadius: 10,
   },
-
   like_button: {
     paddingVertical: 12,
     paddingHorizontal: 15,
@@ -214,13 +231,13 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 24,
-    lineHeight: 21,
+    // lineHeight: 21,
     fontWeight: "bold",
-    letterSpacing: 0.25,
+    // letterSpacing: 0.25,
     color: "white",
-    marginBottom: 40,
-    position: "absolute",
-    top: 20
+    // marginBottom: 40,
+    // position: "absolute",
+    // top: 20
   },
   logout: {
     paddingVertical: 12,
@@ -229,7 +246,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     borderColor: "black",
     borderWidth: 1,
-    marginLeft: 10,
+    marginLeft: 70,
   },
 
   profile: {
@@ -240,6 +257,13 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
     marginRight: 10,
+  },
+  profileAndLogout: {
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderRadius: 100,
+    borderColor: "black",
+    borderWidth: 1,
   },
   emoji: {
     fontSize: 20,

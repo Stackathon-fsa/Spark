@@ -52,5 +52,4 @@ const styles = StyleSheet.create({
     top: 20,
     textAlign: "center",
   },
-
 })

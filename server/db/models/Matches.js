@@ -3,8 +3,8 @@ const db = require("../db")
 
 const Matches = db.define("matches", {
     like: {
-        type: Sequelize.ENUM("yes", "no"),
-        defaultValue: "no",
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
         allowNull: false,
     },
 })

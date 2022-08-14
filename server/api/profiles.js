@@ -2,33 +2,23 @@ const router = require("express").Router()
 const { Profile, Matches } = require("../db")
 
 module.exports = router
-//  Here we are "mounted on" (starts with) /api/profiles
+// mounted on /api/profiles
 
 // GET /api/profiles/:userId
 router.get("/:userId", async (req, res, next) => {
-
   try {
-
-    //matches will be an array containing all the actions a user has completed
-    //we want to filter out all the matchId from our profiles that we fetched
+    // finding all profiles the user has interacted with from the matches table
     const matches = await Matches.findAll({
       where: { userId: req.params.userId },
     })
     const profiles = await Profile.findAll()
 
-    const idsWeDontWant = matches.map((match) => {
-      return match.matchId
-    })
+    // hashTable faster lookup
+    const interactedWith = {};
+    matches.forEach(match => interactedWith[match.matchId] = true);
 
     //filter out all the profiles that have already been interacted with
-    const freshProfiles = profiles.filter((profile) => {
-      if (
-        !idsWeDontWant.includes(profile.userId) &&
-        profile.userId !== req.params.userId
-      ) {
-        return profile
-      }
-    })
+    const freshProfiles = profiles.filter((profile) => !(profile.userId in interactedWith) && profile.userId !== req.params.userId)
 
     res.json(freshProfiles)
   } catch (err) {

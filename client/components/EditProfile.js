@@ -20,7 +20,7 @@ export default function EditProfile({route, navigation}) {
       name
     }))
     navigation.navigate({
-      name: "SingleUser",
+      name: "Profile",
       params: {id: profile.userId}
     })
   }
@@ -59,7 +59,8 @@ export default function EditProfile({route, navigation}) {
         <Text style={styles.label}>Interests</Text>
         <TextInput
           style={styles.formInput}
-          placeholder='set your interests!'                    textContentType="none"
+          placeholder='set your interests!'
+          textContentType="none"
           onChangeText={setInterests}
           value={interests}
           multiline={true}

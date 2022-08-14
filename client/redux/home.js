@@ -43,7 +43,7 @@ export const homeSlice = createSlice({
       state.status = "success"
     },
     [fetchAllProfiles.rejected]: (state, action) => {
-      ;(state.status = "failed"), (state.error = action.payload)
+      (state.status = "failed"), (state.error = action.payload)
     },
     [addMatch.pending]: (state, action) => {
       state.status = "loading"
