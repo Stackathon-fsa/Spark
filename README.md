@@ -13,7 +13,7 @@ Spark is a mobile dating application inspired by Tinder!
 
 ## Using Spark
 
-Spark currently is not deployed, so please feel free to fork the repo
+Clone the repo 
 
 ## Installation 
 
@@ -24,13 +24,13 @@ expo start
 ```
 ## Setup
 
-Application currently isn't deployed (in progress) so you must create a database on your system
+Application uses postgresql
 
 ```bash
 createdb stackathon-tinder-clone
 ```
 
-After connecting to the database you may be interested in seeding the database with some users
+After connecting to the database you may want to seed the database with some users
 
 ```bash
 npm run seed
